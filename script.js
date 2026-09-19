@@ -67,3 +67,47 @@ document.addEventListener("DOMContentLoaded", function () {
   }
 
 });
+/* ANIMACIONES DE LA WEB */
+
+document.addEventListener("DOMContentLoaded", function () {
+
+  /* APARECER AL HACER SCROLL */
+  const elementos = document.querySelectorAll(
+    ".section, .about, .booking, .contact, .service"
+  );
+
+  const observer = new IntersectionObserver(
+    function (entradas) {
+      entradas.forEach(function (entrada) {
+        if (entrada.isIntersecting) {
+          entrada.target.classList.add("visible");
+        }
+      });
+    },
+    {
+      threshold: 0.12
+    }
+  );
+
+  elementos.forEach(function (elemento) {
+    elemento.classList.add("animate-on-scroll");
+    observer.observe(elemento);
+  });
+
+
+  /* ANIMACIÓN AL TOCAR UN SERVICIO */
+  const servicios = document.querySelectorAll(".service");
+
+  servicios.forEach(function (servicio) {
+    servicio.addEventListener("click", function () {
+
+      servicio.classList.remove("service-selected");
+
+      void servicio.offsetWidth;
+
+      servicio.classList.add("service-selected");
+
+    });
+  });
+
+});
